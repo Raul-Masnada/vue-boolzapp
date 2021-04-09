@@ -1,0 +1,279 @@
+
+*{
+   font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input:focus{
+    outline: none;
+}
+
+.colonnaContatti{
+    width: 30%;
+    height: 100vh;
+    background-color: #131C21;
+    border-right: 1px solid darkgrey;
+
+}
+
+.colonnaContatti .utente, .colonnaConversazioni .ContattiConversazioni{
+    width: 100%;
+    height: 50px;
+    background-color: #131C21;
+    color: white;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+}
+
+.colonnaContatti .utente img, .colonnaConversazioni .ContattiConversazioni img{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+}
+
+.colonnaContatti .ricerca, .colonnaConversazioni .inputContainer{
+    width: 100%;
+    height: 50px;
+    background-color: #131C21;
+    color: white;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    border: none;
+    outline: none:
+}
+
+.colonnaContatti .ricerca{
+    position: relative;
+}
+
+.colonnaContatti .ricerca input, .colonnaConversazioni .inputContainer input{
+     width: 100%;
+    border-radius: 50px;
+    line-height: 35px;
+    border: none;
+    outline: none;
+    background-color: #323739;
+    color: white;
+}
+
+.colonnaContatti .ricerca input{
+    padding-left: 50px;
+}
+
+.colonnaContatti .ricerca i{
+    position: absolute;
+    left: 25px;
+}
+
+.colonnaContatti .contatti{
+    cursor: pointer;
+}
+
+.colonnaContatti .contatti .contact{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid darkgrey;
+    background-color:#131C21 ;
+    color: white;
+}
+.colonnaContatti .contatti .contact:hover{
+    background-color: #323739;
+}
+.colonnaContatti .contatti .contact img{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+}
+
+.colonnaContatti .contatti .contact .informazzionicontatti{
+    flex-grow: 1;
+}
+
+.colonnaContatti .contatti .informazzionicontatti .msgPreview{
+    color: rgb(100,100,100);
+}
+
+.colonnaContatti .informazzionicontatti .noMsg{
+    color: white;
+}
+
+.colonnaConversazioni{
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sfondo{
+     display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #262D31;
+    color: white;
+  }
+
+.sfondo span, .sfondo h2{
+    margin: 20px 0;
+    width: 50%;
+    text-align: center;
+}
+
+.colonnaConversazioni .ContattiConversazioni{
+    justify-content: space-between;
+}
+
+.ContattiConversazioni>div{
+    display: flex;
+    align-items: center;
+}
+
+.ContattiConversazioni .strumenti i{
+    margin: 0 10px;
+}
+
+.ContattiConversazioni .strumenti i:hover{
+    cursor: pointer;
+}
+
+.colonnaConversazioni .conversazione{
+    background-image:url(../img/pattern.png);
+     background-color: #262D31;
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+
+}
+
+.colonnaConversazioni .conversazione div:first-child{
+    margin-top: auto;
+}
+
+.colonnaConversazioni .conversazione .msg{
+    margin: 2px 0;
+}
+
+.colonnaConversazioni .conversazione .msg>span{
+    border-radius: 30px;
+    display: flex;
+    max-width: 80%;
+    word-break: break-word;
+}
+
+.colonnaConversazioni .msg .opzioniMsg{
+    position: absolute;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+}
+
+.colonnaConversazioni .msg .down{
+    position: absolute;
+    right: 12px;
+    bottom: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.colonnaConversazioni .msg .menu{
+    display: none;
+    position: absolute;
+    z-index: 900;
+    width: 140px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.colonnaConversazioni .msg .sent .menu{
+    top: 20px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.colonnaConversazioni .msg .msgTime{
+    position: relative;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+}
+
+.colonnaConversazioni .msg .received .menu{
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    cursor: pointer;
+}
+
+.colonnaConversazioni .menu >span{
+    display: inline-block;
+    width: 100%;
+    padding: 20px;
+    font-size: 15px;
+}
+
+.colonnaConversazioni .menu >span:hover{
+    background-color: lightgrey;
+}
+
+.colonnaConversazioni .inputContainer{
+height: 70px;
+display: flex;
+align-items: center;
+padding: 0 20px;
+}
+
+.colonnaConversazioni .inputContainer i{
+    font-size: 20px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.colonnaConversazioni .inputContainer input{
+    flex-grow: 1;
+    margin: 0 5px;
+    padding: 0 20px;
+}
+
+.active{
+    background-color: lightgrey;
+}
+
+.received{
+    background-color: white;
+    float: left;
+    position: relative;
+}
+
+.sent{
+    background-color: #27C34B;
+    float: right;
+}
+
+.received, .sent{
+    padding: 10px 60px 10px 10px;
+    position: relative;
+}
+
+.menu.show{
+    display: block !important;
+}

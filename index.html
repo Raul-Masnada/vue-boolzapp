@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>vue-boolzapp</title>
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+   <link rel="stylesheet" href="css/main.css">
+   <script src="https://code.jquery.com/jquery-3.4.0.min.js" type="text/javascript"></script>
+   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+   <script src="js/main.js" charset="utf-8"></script>
+   </head>
+   <body>
+        <div id="app" class="container">
+            <div class="colonnaContatti">
+                <div class="utente">
+                    <img src="img/io.jpg">
+                    <h1>Masnada Raul</h1>
+                </div>
+                <div class="ricerca">
+                    <input type="text" placeholder="cerca o inizia una nuova chat" v-model="searchedName">
+                    <i class="fas fa-search"></i>
+                </div>
+                <ul class="contatti">
+                    <li v-for="(contact, ind) in filteredContactsArray()" class="contact" @click="getContact(ind)" :class="(activeContact == contact) ? 'active' : ''">
+                        <img :src="'img/'+ contact.avatar + '.png'" :alt="'Immagine di ' + contact.name">
+                        <div class="informazzionicontatti">
+                            <h3>{{contact.name}}</h3>
+                            <div v-if="contact['messages'].length > 0">
+                                <span class="msgPreview">{{contact.messages[contact.messages.length - 1].text.slice(0,25)}} </span>
+                                <span v-if="contact.messages[contact.messages.length - 1].text.length > 25">...</span>
+                            </div>
+                            <div v-else>
+                                <span class="noMsg">Non ci sono messaggi in questa chat</span>
+                            </div>
+                        </div>
+                        <div class="timeLastMsg">
+                            <span v-if="contact['messages'].length > 0">{{contact.messages[contact.messages.length -1].time.slice(0,5)}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="colonnaConversazioni">
+                <template v-if="activeContact">
+                    <div class="ContattiConversazioni">
+                        <div>
+                            <img :src="'img/'+ activeContact.avatar + '.png'" :alt="'Immagine di ' + activeContact.name">
+                            <h3>{{activeContact.name}}</h3>
+                        </div>
+                        <div class="strumenti">
+                            <i class="fas fa-video"></i>
+                            <i class="fas fa-phone"></i>
+                            <i class="fas fa-search"></i>
+                            <i class="fas fa-ellipsis-h"></i>
+                        </div>
+                    </div>
+                    <div class="conversazione" @click="closeMenu" id="chat">
+                        <div v-for="(message, ind) in activeContact.messages" class="msg" >
+                            <span :class="(message.status == 'sent') ? 'sent' : 'received'" @mouseenter="showChevron(message)" @mouseleave="hideChevron(message)">
+                                {{message.text}}
+                                <div class="opzioniMsg">
+                                    <i v-if="message.chevron" class="fas fa-chevron-down down" @click="toggleMenu(message)" @click.stop></i>
+                                    <div :class="(message.menu) ? 'show': ''" class="menu">
+                                        <span @click="deleteMsg(ind)" @click.stop>Cancella</span>
+                                    </div>
+                                    <span v-if="!message.chevron" class="msgTime">{{message.time.slice(0,5)}}</span>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="inputContainer">
+                        <i class="fas fa-smile"></i>
+                        <i class="fas fa-paperclip"></i>
+                        <input type="textarea" rows="1" cols="10" placeholder="Scrivi messaggio" v-model="myText" @keyup.enter="sendText" ref="newMsg">
+                        <i v-if="myText.length == 0" class="fas fa-microphone"></i>
+                        <i v-else class="far fa-paper-plane" @click="sendText"></i>
+                    </div>
+                </template>
+                <div v-else class="sfondo">
+                    <img src="img/sfondo.png" alt="sfondo whatsapp">
+                    <h2>Mantieni il telefono connesso</h2>
+                    <span>Whatsapp si collega al tuo telefono per sincronizzare i messaggi. Per ridurre il consumo dati collega il telefono ad una rete Wi-Fi.</span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
